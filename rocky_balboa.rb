@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'active_support/all'
-require 'audite'
+#require 'audite'
 require 'dotenv'
 require 'capybara'
 require 'capybara/dsl'
@@ -58,7 +58,7 @@ module RockyBalboa
       @email = email
       @password = password
 
-      play_theme!
+      #play_theme!
       login!
     end
 
@@ -72,6 +72,7 @@ module RockyBalboa
       return_hour  = lunch_hour + 1
       exit_hour    = (8 - (lunch_hour - start_hour)) + (lunch_hour + 1)
 
+      puts "Prepare punches to #{project} from #{from} to #{to}, starts at #{start_hour} and exit #{exit_hour}"
       (from..to).each do |date|
         next if date.saturday? || date.sunday?
 
@@ -114,5 +115,7 @@ module RockyBalboa
   end
 end
 
+puts 'New Bablboa'
 puncher = RockyBalboa::Puncher.new(ENV['EMAIL'], ENV['PASSWORD'])
-puncher.punch!(start_hour: 10, lunch_hour: 13, from: ENV['FROM'], to: ENV['TO'], project: ENV['PROJECT'])
+puts 'Execute Bablboa'
+puncher.punch!(start_hour: 8, lunch_hour: 12, from: ENV['FROM'], to: ENV['TO'], project: ENV['PROJECT'])

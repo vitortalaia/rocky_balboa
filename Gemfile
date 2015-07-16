@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'activesupport'
-gem 'audite'
+#gem 'audite'
 gem 'capybara'
 gem 'dotenv'
 gem 'poltergeist'
