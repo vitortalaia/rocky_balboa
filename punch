@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+require_relative 'balboa'
+
+%w(PUNCH_EMAIL PUNCH_PASSWORD PUNCH_PROJECT FROM TO).each do |varname|
+  abort 'Missing env vars. See README for more info.' unless ENV[varname]
+end
+
+puncher = Balboa::Puncher.new(
+  ENV['PUNCH_EMAIL'],
+  ENV['PUNCH_PASSWORD'],
+  ENV['PUNCH_PROJECT']
+)
+
+puncher.punch! Date.parse(ENV['FROM'])..Date.parse(ENV['TO'])

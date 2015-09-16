@@ -69,6 +69,3 @@ module Balboa
     end
   end
 end
-
-puncher = Balboa::Puncher.new(email, password, project)
-puncher.punch!(Date.parse(ENV['FROM'])..Date.parse(ENV['TO']))
