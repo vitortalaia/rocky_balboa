@@ -1,6 +1,8 @@
 require 'active_support/all'
 require 'capybara'
 require 'capybara/poltergeist'
+require 'highline/import'
+require 'holidays'
 
 Capybara.default_driver = :poltergeist
 Capybara.run_server = false
@@ -24,6 +26,8 @@ module Balboa
       from_to.each do |date|
         next if date.saturday? or date.sunday?
 
+        next if date.holiday?(:br) and !punch_on_holiday?(date)
+
         punch_date(date)
 
         create_punch(date, start, lunch)
@@ -32,6 +36,15 @@ module Balboa
     end
 
     private
+    def holiday_name(holiday)
+      Holidays.on(holiday, :br).first[:name]
+    end
+    def punch_on_holiday?(date)
+      HighLine.agree("  #{holiday_name(date)}. Deseja Punch mesmo assim? ") do |q|
+       q.responses[:not_valid] = '  Por favor "yes" ou "no".'
+      end
+    end
+
     def punching_to_project
       puts "Punch to #{@project}"
     end
