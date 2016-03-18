@@ -6,7 +6,7 @@ require 'holidays'
 
 Capybara.default_driver = :poltergeist
 Capybara.run_server = false
-Capybara.app_host = 'http://punchlock.herokuapp.com'
+Capybara.app_host = 'http://punchclock.cm42.io/'
 
 module Balboa
   class Puncher
