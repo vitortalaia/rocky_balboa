@@ -40,7 +40,7 @@ module Balboa
       Holidays.on(holiday, :br).first[:name]
     end
     def punch_on_holiday?(date)
-      HighLine.agree("  #{holiday_name(date)}. Deseja Punch mesmo assim? ") do |q|
+      HighLine.agree("  #{holiday_name(date)}. Deseja socar mesmo assim (y|n)? ") do |q|
        q.responses[:not_valid] = '  Por favor "yes" ou "no".'
       end
     end
