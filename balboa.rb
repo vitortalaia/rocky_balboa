@@ -1,5 +1,6 @@
 require 'active_support/all'
 require 'capybara'
+require 'capybara/dsl'
 require 'capybara/poltergeist'
 require 'highline/import'
 require 'holidays'
